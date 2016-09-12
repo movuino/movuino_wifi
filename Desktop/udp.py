@@ -11,7 +11,7 @@ def main(threadname,q):
         rand = random.randint(0, 10)
         message, address = serverSocket.recvfrom(1024)
         #message = message.upper()
-        print message
+        #print message
         if q!=0:
             q.put(message)
         #if rand >= 4:

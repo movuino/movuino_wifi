@@ -32,7 +32,6 @@ class App(tk.Frame):
     def __init__(self, parent, title):
         print('init')
         tk.Frame.__init__(self, parent)
-        #self.queue = queue
         #self.serialPort = serialPort
         self.npoints = 100
         #fill the array with 0 to initialize
@@ -43,12 +42,13 @@ class App(tk.Frame):
         parent.wm_geometry("800x600")
         self.canvas = tk.Canvas(self, background="white")
         self.canvas.bind("<Configure>", self.on_resize)
+        #create axis
         self.canvas.create_line((0, 0, 0, 0), tag='X', fill='darkblue', width=1)
         self.canvas.create_line((0, 0, 0, 0), tag='Y', fill='darkred', width=1)
         self.canvas.create_line((0, 0, 0, 0), tag='Z', fill='darkgreen', width=1)
         self.canvas.grid(sticky="news")
-        self.grid_rowconfigure(0, weight=1)
-        self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure(0, weight=10)
+        self.grid_columnconfigure(0, weight=10)
         self.grid(sticky="news")
         parent.grid_rowconfigure(0, weight=1)
         parent.grid_columnconfigure(0, weight=1)
@@ -108,7 +108,7 @@ class App(tk.Frame):
             ax=float(data[5])/200
             ay=float(data[6])/200
             az=float(data[7])/200
-            #print(ay) 
+            #print(ax) 
             x,y,z =    ax, ay,az
             self.append_values(x, y, z)
             self.after_idle(self.replot)
@@ -120,6 +120,7 @@ class App(tk.Frame):
         """
         #add one point 
         self.Line1.append(float(x))
+        #print(x)
         #shift the array one to the right sel.line[-100:] the last 100 from the right 
         self.Line1 = self.Line1[-1 * self.npoints:]
         self.Line2.append(float(y))
@@ -139,17 +140,20 @@ class App(tk.Frame):
         max_X = max(self.Line1) + 1e-5
         max_Y = max(self.Line2) + 1e-5
         max_Z = max(self.Line3) + 1e-5
+        #quand max_all augmente les graph sont plus bas
         max_all = 200.0
         #create list of points to display
         coordsX, coordsY, coordsZ = [], [], []
         for n in range(0, self.npoints):
             x = (w * n) / self.npoints
             coordsX.append(x)
+            #print(h - ((h * (self.Line1[n]+100)) / max_all))
+            #those lines defines the the spacing and location of lines
             coordsX.append(h - ((h * (self.Line1[n]+100)) / max_all))
             coordsY.append(x)
             coordsY.append(h - ((h * (self.Line2[n]+100)) / max_all))
             coordsZ.append(x)
-            coordsZ.append(h - ((h * (self.Line3[n] + 100)) / max_all))
+            coordsZ.append(h - ((h * (self.Line3[n] +50)) / max_all))
         #move the graph
         #print(*coordsX)
         self.canvas.coords('X', *coordsX)
