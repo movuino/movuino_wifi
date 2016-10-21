@@ -94,9 +94,11 @@ void loop() {
          sprintf(msg, "S: %d 2 3 a %d %d %d",packetNumber,ax,ay,az);
          //sprintf(msg, "S: %d 2 3 a %d 123 123",packetNumber,packetNumber);
          //sprintf(msg, "S: %d 2 3 a 123 123 123",packetNumber);
+         Serial.println(ax);
            Udp.write(msg);
            Udp.endPacket();
          time0=micros();
+         delay(5);
          }
    // else  digitalWrite(0,HIGH);
 }
