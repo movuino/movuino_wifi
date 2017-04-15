@@ -17,7 +17,7 @@ ESP8266WiFiMulti WiFiMulti;
 int connected2 =0;
 WiFiClient client;
 const uint16_t port = 1000;
-const char * host = "192.168.43.168"; // ip or dns
+const char * host = "192.168.43.38"; // ip or dns
 char packetBuffer[255]; //buffer to hold incoming packet
 char  ReplyBuffer[] = "S: 1 2 3 4 1254 1245 1234";       // a string to send back
 unsigned int localPort = 2390;      // local port to listen on
