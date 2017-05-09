@@ -122,7 +122,13 @@ void setup(void)
   /* U8g2 Project: KS0108 Test Board */
  // pinMode(16, OUTPUT);
  // digitalWrite(16, 0);	
-  
+
+  //Serial.begin(115200);
+  //Serial.println(u8x8.getI2CAddress());
+  //0x3C aliexpress screen
+  //0x3D movuino screen
+///  u8x8.setI2CAddress(0x60);
+  delay(100);
   u8x8.begin();
   u8x8.setPowerSave(0);
   
@@ -132,9 +138,9 @@ void setup(void)
 void loop(void)
 {
   u8x8.setFont(u8x8_font_chroma48medium8_r);
-  u8x8.drawString(0,1,"Hello World!");
+  u8x8.drawString(0,1,"Hello World!2");
   u8x8.refreshDisplay();		// for SSD1606  
-  delay(1000);
+  delay(100);
   
   /*
   delay(1000);
