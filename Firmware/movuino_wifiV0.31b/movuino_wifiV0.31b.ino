@@ -12,6 +12,17 @@
 // for both classes must be in the include path of your project
 #include "I2Cdev.h"
 #include "MPU6050.h"
+
+#include <i2c_adc_ads7828.h>
+
+
+// device 0
+// Address: A1=0, A0=0
+// Command: SD=1, PD1=1, PD0=1
+ADS7828 device(0, SINGLE_ENDED | REFERENCE_ON | ADC_ON/*, 0x0F*/); //no mask to do find how it works
+ADS7828* adc = &device;
+//ADS7828Channel* Analog0= adc->channel(0);
+ADS7828Channel* Analog1= adc->channel(1);
 int opMode = 0;
 long int timer0;
 long int timer1;
@@ -141,6 +152,11 @@ void Send_Data_From_File() {
 void setup() {
   Serial.begin(115200);
   Wire.begin();
+  // enable I2C communication
+  ADS7828::begin();
+  // adjust scaling on an individual channel basis 12 bits = 4096
+  Analog1->minScale = 0;
+  Analog1->maxScale = 4095;
   // We start by connecting to a WiFi network
   WiFiMulti.addAP("MotoG3", "z12345678");
   //configure adc foor battery level monitoring
