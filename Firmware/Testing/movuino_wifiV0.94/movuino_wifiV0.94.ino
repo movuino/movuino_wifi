@@ -1,3 +1,4 @@
+#include <NTPClient.h>
 #include "FS.h"
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
@@ -33,6 +34,10 @@ char packetBuffer[255]; //buffer to hold incoming packet
 char  ReplyBuffer[] = "S: 1 2 3 4 1254 1245 1234";       // a string to send back
 unsigned int localPort = 2390;      // local port to listen on
 WiFiUDP Udp;
+// By default 'time.nist.gov' is used with 60 seconds update interval and
+// no offset
+//NTPClient timeClient(ntpUDP);
+NTPClient timeClient(Udp, "europe.pool.ntp.org",7200);
 
 const char* ssid = "Ke20 iPhone";/*"MotoG3";*/
 const char* password = "z12345678";
@@ -42,9 +47,11 @@ int sampleRateHz = 10;
 //sample rate in ms
 int sampleRateMs = 1000/sampleRateHz;
 const int sleepTimeS = 10;
-int sampleBufferLength = 18000; //nb of samples before sending data 18000 =30min
+int sampleBufferLength = 600; //nb of samples before sending data 18000 =30min
 int blinkInterval=10;  //blink one time every 10 samples 
- 
+bool timeSynced=false; //if time has been synced
+
+
 void connect_wifi(){
   //  WiFi.disconnect(); 
   if (WiFi.status() != WL_CONNECTED) { // FIX FOR USING 2.3.0 CORE (only .begin if not connected)
@@ -74,11 +81,21 @@ void disconnect_wifi(){
    WiFi.forceSleepBegin();
    delay(1);
 }
-void reconnect_wifi(){
+/*void reconnect_wifi(){
   reconnect_trials=0;
   disconnect_wifi();
   connect_wifi();
+}*/
+void sync_time(){
+  connect_wifi();
+  timeClient.begin();
+  timeClient.update();
+  Serial.println(timeClient.getFormattedTime());
+  disconnect_wifi();
 }
+
+
+
 void memory_info(){
     FSInfo fs_info;
     SPIFFS.info(fs_info);
@@ -283,6 +300,7 @@ void loop() {
     }
     //recording mode
     else if (inByte == 'r') {
+      sync_time();
       Serial.println("Recording");
       fw = SPIFFS.open("/data/1.txt", "w+");
       startTimer=millis(); 
@@ -385,6 +403,10 @@ void loop() {
       list_files();
       memory_info();
     }
+    else if (inByte == 'y') {
+       Serial.println("Sync Time :");
+       sync_time();
+    }
     else delay(2);
   }
   else delay(1);
@@ -450,6 +472,7 @@ void loop() {
       }
       //print to file 
       else{
+          fw.print(timeClient.getFormattedTime()+" ");
           fw.print(sampleNb);
           fw.print(" ");
           fw.print(ax);
