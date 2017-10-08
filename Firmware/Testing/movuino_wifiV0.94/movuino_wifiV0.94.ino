@@ -6,7 +6,6 @@
 // for both classes must be in the include path of your project
 #include "I2Cdev.h"
 #include "MPU6050.h"
-void reconnect_wifi();
 
 int reconnect_trials=0;
 int global_count=0;
@@ -34,16 +33,18 @@ char packetBuffer[255]; //buffer to hold incoming packet
 char  ReplyBuffer[] = "S: 1 2 3 4 1254 1245 1234";       // a string to send back
 unsigned int localPort = 2390;      // local port to listen on
 WiFiUDP Udp;
-int sampleBufferLength = 60; //nb of samples before sending data
+
 const char* ssid = "Ke20 iPhone";/*"MotoG3";*/
 const char* password = "z12345678";
 File fw;
 //sample rate in Hz
-int sampleRateHz = 1;
+int sampleRateHz = 10;
 //sample rate in ms
 int sampleRateMs = 1000/sampleRateHz;
 const int sleepTimeS = 10;
-
+int sampleBufferLength = 18000; //nb of samples before sending data 18000 =30min
+int blinkInterval=10;  //blink one time every 10 samples 
+ 
 void connect_wifi(){
   //  WiFi.disconnect(); 
   if (WiFi.status() != WL_CONNECTED) { // FIX FOR USING 2.3.0 CORE (only .begin if not connected)
@@ -138,8 +139,6 @@ void Send_Data() {
   //sprintf(msg, "S: 1 2 3 a %d %d %d",ax,ay,az);
   //sprintf(msg, "S: %d 2 3 a %d %d %d",packetNumber,ax,ay,az);
   //sprintf(msg, "S: %d 2 3 a %d 123 123",packetNumber,packetNumber);
-  //sprintf(msg, "S: %d 2 3 a 123 123 123",packetNumber);
-  // Serial.println(ax);
 }
 void Send_Data_From_File() {
   Udp.begin(localPort);
@@ -207,6 +206,7 @@ void setup() {
     digitalWrite(2,LOW);
     delay(500);
     digitalWrite(2,HIGH);
+    disconnect_wifi();
     }
 
 void loop() {
@@ -411,7 +411,8 @@ void loop() {
   }
   //print in file
   else if (opMode == 2) {
-   timer1=millis(); 
+   // digitalWrite(2,LOW);
+    timer1=millis(); 
     if(timer1-startTimer>(1000/sampleRateHz)) {
     //Serial.println(timer1-startTimer);
     startTimer=timer1;  
@@ -424,29 +425,13 @@ void loop() {
        fw.close();
        opMode=0;
        Serial.println("Stop recording");
-       digitalWrite(2, HIGH);
        Serial.println("Connect to wifi");
        connect_wifi();
        //WiFi.reconnect();
        delay(500);
        Serial.println("Sending data");
-       //Udp.begin(localPort);
-  /*char msg[30];
-  //accelgyro.getMotion9(&ax, &ay, &az, &gx, &gy, &gz, &mx, &my, &mz);
-  Udp.beginPacket(host, 2390);
-  sprintf(msg, "S: 1 2 3 a ");
-  Udp.write(msg);*/
-      //Udp.endPacket();
-      //Udp.stop();
-      //Udp.stopAll();
        Send_Data_From_File();
        delay(500);
-    /*   while (WiFi.status() != WL_DISCONNECTED) {
-              WiFi.disconnect();
-              WiFi.mode(WIFI_OFF);
-              delay(100);
-              Serial.println("disconnect");
-              }*/
        disconnect_wifi();
        delay(500);
        //deleting file 
@@ -462,8 +447,8 @@ void loop() {
        opMode=2;
        startTimer=millis(); 
        global_count++;
-       //Serial.println(global_count);
       }
+      //print to file 
       else{
           fw.print(sampleNb);
           fw.print(" ");
@@ -481,7 +466,7 @@ void loop() {
           fw.print(" ");
           fw.println(sensorValue);
           sampleNb++;
-          Serial.println(sampleNb);
+          digitalWrite(2,sampleNb%blinkInterval);
           }
     }
     else delay(1);
