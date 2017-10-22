@@ -18,7 +18,7 @@ long int sampleNb;
 int16_t ax, ay, az;
 int16_t gx, gy, gz;
 int16_t mx, my, mz;
-MPU6050 accelgyro;
+MPU6050 accelgyro(MPU6050_ADDRESS_AD0_HIGH);
 //Led and buttons
 const int buttonPin = 13;
 //variables for the debounce
