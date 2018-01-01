@@ -1,4 +1,5 @@
 #include "FS.h"
+#include "SPIFFS.h"
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
 #include <WiFiUdp.h>
