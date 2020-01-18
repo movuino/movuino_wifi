@@ -9,8 +9,8 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
  2- Install support for ESP8266 as explained here :  https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/using-arduino-ide  [Use version v2.5.0 of espcore]  
  3- In arduino software Choose the good board : Adafruit Feather huzzah esp8266  
  4- Copy and paste the content of the folder "libraries" into your arduino sketchbook library folder  
-	to know where is your arduino sketchbook folder Open Arduino software got to File -> Preferences -> Sketchbook location  
-	Libraries folder is inside the sketchbook folder  
+	- to know where is your arduino sketchbook folder Open Arduino software got to File -> Preferences -> Sketchbook location  
+	- Libraries folder is inside the sketchbook folder  
  5- Install asukiaaa library (Open arduino software go to sketch -> library manager -> serch for mpu9250 and install it )  
  6- Install adafruit neopixel library using library manager  
  
