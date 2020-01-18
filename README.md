@@ -18,22 +18,22 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
 # Unit tests (-> Firmware -> Unit tests)
 
 ### Basic example : Blink
--blink : blink the integrated LED (pin 2)
+- blink : blink the integrated Blue LED (pin 2)
 
 ### I2C Scanner (used to check that all sensors are recognized)
--i2cscanner : scan all i2c adresses and display when a sensor is detected
+- i2cscanner : scan all i2c adresses and display when a sensor is detected
 
 ### Neopixel  (pin 15)
--simpleNeopixel 
+- simpleNeopixel 
 
 ### MPU9250 9 axis IMU (I2C address 0x69)
 
-#### Using I2cdev+MPU6050 library (compatible with mpu6050, mpu9150 and mpu9250)<br>
+#### Using I2cdev+MPU6050 library (compatible with mpu6050, mpu9150 and mpu9250):<br>
 - MPU6050_raw<br>
-#### Using asukiaaa library<br>
+#### Using asukiaaa library:<br>
 - MPU9250-asukiaaaGetData<br>
 
-### Battery level (ADC reading with voltage divider 0.23)
+### Battery level (ADC reading with voltage divider 0.23):<br>
 - simpleBatteryMonitor-ADC 
 
 # Main UDP examples  (-> Firmware -> UDP examples)
@@ -42,9 +42,8 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
 - udp_receive.py simple python server to reeive data sent by movuinos on the same network<br>
 - udp-send-broadcast.py ;: python code to send data to all movuinos connected on a network<br>
 <br>
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
- **Notes :** <br> 
-  - the server and the movuinos have to be on the same network<br>
-  - you need to change in udp.ino : <br>
+**Notes :** <br> 
+- the server and the movuinos have to be on the same network<br>
+- you need to change in udp.ino : <br>
   -  ssid infos (name and password)<br>
   -  IP adress of the server running the python script
