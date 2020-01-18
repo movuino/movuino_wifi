@@ -37,7 +37,7 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
 - simpleBatteryMonitor-ADC 
 
 # Main UDP examples  (-> Firmware -> UDP examples)
-Note : the server and the movuino have to be on the same network<br>
+Note : the server and the movuinos have to be on the same network<br>
 - udp.ino : send a ping to the udp server each time a motion > than threshold is detected (need the udp_recive.py opened on the server)<br>
 - udp_receive.py simple python server to reeive data sent by movuinos on the same network<br>
 - udp-send-broadcast.py ;: python code to send data to all movuinos connected on a network<br>
