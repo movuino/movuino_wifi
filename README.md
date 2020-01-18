@@ -28,9 +28,9 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
 
 ### MPU9250 9 axis IMU (I2C address 0x69)
 
-**using I2cdev+MPU6050 library (compatible with mpu6050, mpu9150 and mpu9250)** /  
-- MPU6050_raw /
-**using asukiaaa library** /
+**using I2cdev+MPU6050 library (compatible with mpu6050, mpu9150 and mpu9250)**<br>
+- MPU6050_raw<br>
+**using asukiaaa library**<br>
 - MPU9250-asukiaaaGetData
 
 ### Battery level (ADC reading with voltage divider 0.23)
