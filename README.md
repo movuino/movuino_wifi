@@ -15,9 +15,9 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
  6- Install adafruit neopixel library using library manager  
  
 
-#Unit tests (-> Firmware -> Unit tests)
+# Unit tests (-> Firmware -> Unit tests)
 
-## Basi example : Blink
+## Basic example : Blink
 -blink : blink the integrated LED (pin 2)
 
 ## I2C Scanner (used to check that all sensors are recognized)
