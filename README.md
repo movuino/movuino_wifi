@@ -13,7 +13,7 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
 	- Libraries folder is inside the sketchbook folder  
  5- Install asukiaaa library (Open arduino software go to sketch -> library manager -> serch for mpu9250 and install it )  
  6- Install adafruit neopixel library using library manager  
- 
+
 
 # Unit tests (-> Firmware -> Unit tests)
 
@@ -24,7 +24,7 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
 - i2cscanner : scan all i2c adresses and display when a sensor is detected
 
 ### Neopixel  (pin 15)
-- simpleNeopixel 
+- simpleNeopixel
 
 ### MPU9250 9 axis IMU (I2C address 0x69)
 
@@ -34,16 +34,15 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
 - MPU9250-asukiaaaGetData<br>
 
 ### Battery level (ADC reading with voltage divider 0.23):<br>
-- simpleBatteryMonitor-ADC 
+- simpleBatteryMonitor-ADC
 
 # Main UDP examples  (-> Firmware -> UDP examples)
 
 - udp.ino : send a ping to the udp server each time a motion > than threshold is detected (need the udp_recive.py opened on the server)<br>
 - udp_receive.py simple python server to reeive data sent by movuinos on the same network<br>
 - udp-send-broadcast.py ;: python code to send data to all movuinos connected on a network<br>
-<br>
-#### Notes :<br>
+#### Notes :
 - the server and the movuinos have to be on the same network<br>
 - you need to change in udp.ino : <br>
-  *  ssid infos (name and password)<br>
-  *  IP adress of the server running the python script
+ **ssid** infos (name and password)<br>
+ **IP adress** of the server running the python script
