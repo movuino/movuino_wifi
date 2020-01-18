@@ -42,8 +42,8 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
 - udp_receive.py simple python server to reeive data sent by movuinos on the same network<br>
 - udp-send-broadcast.py ;: python code to send data to all movuinos connected on a network<br>
 <br>
-_Notes :_ <br> 
+__Notes :__ <br> 
 - the server and the movuinos have to be on the same network<br>
 - you need to change in udp.ino : <br>
-  -  ssid infos (name and password)<br>
-  -  IP adress of the server running the python script
+  *  ssid infos (name and password)<br>
+  *  IP adress of the server running the python script
