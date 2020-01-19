@@ -12,7 +12,8 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
 	- to know where is your arduino sketchbook folder Open Arduino software got to File -> Preferences -> Sketchbook location  
 	- Libraries folder is inside the sketchbook folder  
  5- Install asukiaaa library (Open arduino software go to sketch -> library manager -> serch for mpu9250 and install it )  
- 6- Install adafruit neopixel library using library manager  
+ 6- Install adafruit neopixel library using library manager
+ 7- if you want to use node.js backend instal node .js and SocketIoClient arduino library (using library manager)  
 
 
 # Unit tests (-> Firmware -> Unit tests)
@@ -46,3 +47,11 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
 - you need to change in udp.ino : <br>
  **ssid** infos (name and password)<br>
  **IP adress** of the server running the python script
+- A node.js server can be used to receive UDP packets (in backend example -> Node.js -> Node.js receive UDP )<br>
+# Receive Data using javascript backend  (-> backend example -> Node.js)
+- Note : those examples are just data exchange using a server and client the sensor functions can be copied form the udp example <br>
+- arduino client example is in Firmware -> websockets examples -> socketio
+- data can be exchange between movuinos and th server using websockets (fast and using javascript)
+- you need a library to receive websockets on the node.js server; we provide examples for the 2 main libraries <br>
+ -  **socket.io** : you need to go go with terminal to the folder (websockets with socketio) then launch **"npm install"** to install the socket.io library and dependencies then launch the server with **"node index.js"**
+ -  **ws** : you need to go go with terminal to the folder (websockets with ws) then launch **"npm install ws"** to install the ws library and dependencies then launch the server with **"node server.js"**
