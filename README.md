@@ -6,7 +6,7 @@ Tested on ESP core v2.5.0 (please use the version of esp core so autoreset is wo
 # Installation
 
  1- Install drivers for CP2104 http://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers <br>
- 2- Install support for ESP8266 as explained here :  https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/using-arduino-ide  [Use version v2.5.0 of espcore]  
+ 2- Install support for ESP8266 as explained here :  https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/using-arduino-ide  <b>[Use version v2.5.0 of espcore - on version > 2.5 upload fails]</b>  
  3- In arduino software Choose the good board : Adafruit Feather huzzah esp8266  
  4- Copy and paste the content of the folder "libraries" into your arduino sketchbook library folder  
 	- to know where is your arduino sketchbook folder Open Arduino software got to File -> Preferences -> Sketchbook location  
