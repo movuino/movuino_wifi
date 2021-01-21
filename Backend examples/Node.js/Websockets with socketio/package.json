@@ -27,7 +27,7 @@
 	"dependencies": {
 		"express": ">=3.0.3",
 		"optimist": ">=0.3.5",
-		"socket.io": ">=0.9.11"
+		"socket.io": ">=2.4.0"
 	},
 	"engines": {
 		"node": ">=0.8.22",
